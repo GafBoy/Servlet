@@ -69,19 +69,7 @@ public class ServletList extends HttpServlet {
 //}
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    StringBuffer jb = new StringBuffer();
-    String line;
     int id = Integer.parseInt(request.getParameter("id"));
-
-    try {
-        BufferedReader reader = request.getReader();
-        while ((line = reader.readLine()) != null) {
-            jb.append(line);
-        }
-    } catch (Exception e) {
-        System.out.println("Error");
-    }
-    JsonObject jobj = gson.fromJson(String.valueOf(jb), JsonObject.class);
 
     request.setCharacterEncoding("UTF-8");
     response.setContentType("application/json; charset = utf-8");
