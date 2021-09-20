@@ -25,4 +25,11 @@ public class Model implements Serializable {
     public Map<Integer, User> getFromList(){
         return model;
     }
+    public void delete(int id){
+        model.remove(id);
+    }
+    public void edit(int id, User user){
+        model.put(id, user);
+    }
+
 }

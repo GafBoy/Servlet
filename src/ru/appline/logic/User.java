@@ -7,6 +7,7 @@ public class User {
 
     private Double salary;
 
+
     public User(String name, String surname, Double salary) {
         this.name = name;
         this.surname = surname;
