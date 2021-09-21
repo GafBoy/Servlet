@@ -31,5 +31,8 @@ public class Model implements Serializable {
     public void edit(int id, User user){
         model.put(id, user);
     }
+    public boolean hasUser(int id){
+        return model.containsKey(id);
+    }
 
 }

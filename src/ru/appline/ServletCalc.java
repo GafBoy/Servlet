@@ -20,6 +20,7 @@ public class ServletCalc extends HttpServlet {
     Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("application/json; charset = utf-8");
         StringBuffer jb = new StringBuffer();
         String line;
         try {
@@ -38,6 +39,7 @@ public class ServletCalc extends HttpServlet {
         Double b = jobj.get("b").getAsDouble();
         String math = jobj.get("math").getAsString();
         Double answer = 0.0;
+        PrintWriter pw = response.getWriter();
 if (math.equals("+")){
     answer = a + b;
 }
@@ -48,10 +50,14 @@ if (math.equals("+")){
             answer = a * b;
         }
         if (math.equals("/")){
+            if (b.equals(0.0)){
+                pw.print("На ноль делить нельзя!");
+                return;
+            }
             answer = a / b;
         }
 Results results = new Results(answer);
-        PrintWriter pw = response.getWriter();
+
 
         pw.print(gson.toJson(results));
     }

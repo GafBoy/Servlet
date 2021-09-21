@@ -26,8 +26,12 @@ public class ServletDelete extends HttpServlet {
         response.setContentType("application/json; charset = utf-8");
         int id = Integer.parseInt(request.getParameter("id"));
         PrintWriter pw= response.getWriter();
-        model.delete(id);
-        pw.print("Пользователь с id '" + id + "' удален");
+        if (model.hasUser(id)){
+            model.delete(id);
+            pw.print("Пользователь с id '" + id + "' удален");
+        }else {
+            pw.print("Пользователя с id '" + id + "' нет");
+        }
     }
 
     }

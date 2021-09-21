@@ -42,13 +42,16 @@ public class ServletUpdate extends HttpServlet {
 
 
         User user = new User(name, surname, salary);
-        model.edit(id, user);
 
         response.setContentType("application/json; charset = utf-8");
         PrintWriter pw = response.getWriter();
+        if (model.hasUser(id)){
+            model.edit(id, user);
+            pw.print(gson.toJson(model.getFromList()));
+        }else {
+            pw.print("Пользователя с id '" + id + "' нет");
+        }
 
-
-        pw.print(gson.toJson(model.getFromList()));
     }
 }
 
